@@ -29,10 +29,9 @@ void cnn_accel(
 
     static ap_int<16> conv_out[OUT_CH][CONV_H][CONV_W];
     static ap_int<16> pool_out[OUT_CH][POOL_H][POOL_W];
+    
+    // Convolution + ReLU
 
-    // =========================
-    // 1�?⃣ Convolution + ReLU
-    // =========================
     for (int oc = 0; oc < OUT_CH; oc++) {
         for (int i = 0; i < CONV_H; i++) {
             for (int j = 0; j < CONV_W; j++) {
@@ -68,9 +67,9 @@ void cnn_accel(
         }
     }
 
-    // =========================
-    // 2�?⃣ Max Pooling (2x2)
-    // =========================
+
+    //Max Pooling (2x2)
+
     for (int oc = 0; oc < OUT_CH; oc++) {
         for (int i = 0; i < POOL_H; i++) {
             for (int j = 0; j < POOL_W; j++) {
@@ -93,9 +92,8 @@ void cnn_accel(
         }
     }
 
-    // =========================
-    // 3�?⃣ Fully Connected Layer
-    // =========================
+    // Fully Connected Layer
+    
 
     int flat_size = OUT_CH * POOL_H * POOL_W;
 
